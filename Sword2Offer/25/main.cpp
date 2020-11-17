@@ -14,11 +14,20 @@ public:
         if (!L2) return L1;
 
         ListNode *newListNode = new ListNode(0);
+        ListNode *tmp = newListNode;
 
-        if (L1->val >= L2->val) {
-            newListNode->val = L2->val;
-            new
+        while (L1 && L2) {
+            if (L1->val >= L2->val) {
+                tmp->next = L2;
+                L2 = L2->next;
+            } else {
+                tmp->next = L1;
+                L1 = L1->next;
+            }
+            tmp = tmp->next;
         }
+        L1?tmp->next=L1:tmp->next=L2;
 
+        return newListNode->next;
     }
 };
